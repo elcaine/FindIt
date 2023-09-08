@@ -1,0 +1,76 @@
+:root {
+  --outer-space: #33393f;
+  --contrast--yellow: yellow;
+  --words-blue: cornflowerblue;
+  --pure-black: black;
+  --visited-link: grey;
+}
+
+header, .project:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.no-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #1b89bc;
+  text-decoration: none;
+  font-size: 100%;
+}
+
+.no-button:hover {
+  color: #065b83;
+  text-decoration: underline;
+}
+
+.dollar-amount {
+  color: #056605;
+  font-weight: bold;
+  margin-left: -5px;
+}
+
+header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  padding: 2.5rem;
+  z-index: 99;
+}
+
+/* nav {
+  float: right;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 2rem;
+  margin-top: -1rem;
+} */
+
+ul {
+    list-style-type: none;   
+}
+
+li {
+    display: inline-block;
+    margin-left: 3rem;
+}
+
+a .center {
+  margin: .1rem;
+  text-align: center;
+}
+
+a:link {
+  color: var(--contrast--yellow);
+}
+
+a:visited {
+  color: var(--visited-link);
+}
+
+a:hover {
+  background-color: aqua;
+  color: var(--pure-black);
+}

@@ -1,0 +1,20 @@
+<div class="text-center">
+  <h2>{{title}}</h2>
+  <p>{{{get_emoji}}}</p>
+  <p>{{contents}}</p>
+  <p>Created by {{user.name}} on {{format_date date_created}}</p>
+
+
+<h3> Trolling </h3>
+{{#each comments as |com|}}
+  <p>
+    <span for="img" aria-label="money">💲</span>
+    <span class="dollar-amount">{{com.contents}}</span>
+  </p>
+  {{/each}}
+  
+  
+  <p>
+    <button class="btn btn-primary">A blogPost???</button>
+  </p>
+</div>
