@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@tailwindcss/forms": "^0.5.6",
-    "bootstrap": "^3.4.1"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.3.3"
-  }
-}

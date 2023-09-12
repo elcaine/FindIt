@@ -1,76 +1,95 @@
-:root {
-  --outer-space: #33393f;
-  --contrast--yellow: yellow;
-  --words-blue: cornflowerblue;
-  --pure-black: black;
-  --visited-link: grey;
+
+
+.registration-form{
+	padding: 50px 0;
 }
 
-header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
+.registration-form form{
+    background-color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 
-.no-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: #1b89bc;
-  text-decoration: none;
-  font-size: 100%;
+.registration-form .form-icon{
+	text-align: center;
+    background-color: #5891ff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
 }
 
-.no-button:hover {
-  color: #065b83;
-  text-decoration: underline;
+.registration-form .item{
+	border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
 }
 
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
+.registration-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #5791ff;
+    border: none;
+    color: white;
+    margin-top: 20px;
 }
 
-header {
-  width: 100%;
-  position: sticky;
-  top: 0;
-  left: 0;
-  margin: 0 auto;
-  padding: 2.5rem;
-  z-index: 99;
+.registration-form .social-media{
+    max-width: 600px;
+    background-color: #fff;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 
-/* nav {
-  float: right;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 2rem;
-  margin-top: -1rem;
-} */
-
-ul {
-    list-style-type: none;   
+.registration-form .social-icons{
+    margin-top: 30px;
+    margin-bottom: 16px;
 }
 
-li {
+.registration-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 45px;
     display: inline-block;
-    margin-left: 3rem;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
 }
 
-a .center {
-  margin: .1rem;
-  text-align: center;
+.registration-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
 }
 
-a:link {
-  color: var(--contrast--yellow);
-}
+@media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
 
-a:visited {
-  color: var(--visited-link);
-}
-
-a:hover {
-  background-color: aqua;
-  color: var(--pure-black);
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
 }
