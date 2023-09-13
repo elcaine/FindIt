@@ -33,5 +33,9 @@ router.get('/aboutus', (req, res) => {
   res.render('about-us');
 })
 
+router.get('/createaccount', (req, res) => {
+  res.render('create-account');
+})
+
 
 module.exports = router;
