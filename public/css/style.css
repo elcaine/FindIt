@@ -1,4 +1,14 @@
+.nav-bar {
+    padding: 1%;
+    background-color: #628ad9;
+}
 
+.hero-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  }
 
 .registration-form{
 	padding: 50px 0;
