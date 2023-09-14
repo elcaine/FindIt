@@ -16,7 +16,7 @@ const seedDatabase = async () => {
 
   // Create Categories
   const categories = await Category.bulkCreate(categoryData, {
-    individualHooks: true,
+    // individualHooks: true, // Best I can tell, this option only needed if Model has hooks.
     returning: true,
   });
   console.log('MySQL seeding for categories.................\n', categories, '\n...................... end categories seeding');
