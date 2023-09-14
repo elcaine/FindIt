@@ -2,16 +2,36 @@
   {
     "name": "Sal",
     "email": "sal@hotmail.com",
-    "password": "password12345"
+    "password": "pw"
   },
   {
     "name": "Lernantino",
     "email": "lernantino@gmail.com",
-    "password": "password12345"
+    "password": "pw"
   },
   {
     "name": "Amiko",
     "email": "amiko2k20@aol.com",
-    "password": "password12345"
+    "password": "pw"
+  },
+  {
+    "name": "Samantha",
+    "email": "s@samantha.com",
+    "password": "pw"
+  },
+  {
+    "name": "Candace",
+    "email": "c@candace.com",
+    "password": "pw"
+  },
+  {
+    "name": "Alex",
+    "email": "a@alex.com",
+    "password": "pw"
+  },
+  {
+    "name": "Caine",
+    "email": "c@caine.com",
+    "password": "pw"
   }
 ]

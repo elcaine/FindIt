@@ -1,9 +1,8 @@
 const sequelize = require('../config/connection');
-const { User, BlogPost, Comment } = require('../models');
+const { User, Category } = require('../models');
 
 const userData = require('./userData.json');
-const blogData = require('./blogData.json');
-const commData = require('./commData.json');
+const categoryData = require('./categoryData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -13,24 +12,14 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
+  console.log('MySQL seeding for users.................\n', users, '\n...................... end users seeding');
 
-  // Create BlogPosts
-  for (const blog of blogData) {
-    await BlogPost.create({
-      ...blog,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
-
-  // Create Comments
-  const blogs = await BlogPost.findAll();
-  for (const comm of commData) {
-    await Comment.create({
-      ...comm,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-      blog_id: blogs[Math.floor(Math.random() * blogs.length)].id,
-    });
-  }
+  // Create Categories
+  const categories = await Category.bulkCreate(categoryData, {
+    individualHooks: true,
+    returning: true,
+  });
+  console.log('MySQL seeding for categories.................\n', categories, '\n...................... end categories seeding');
 
   process.exit(0);
 };
