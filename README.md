@@ -18,8 +18,8 @@ xxxx
 ![Screenshoty shots](./img/404.jpg)
 
 ## Links
-### [Link to repo](https://github.com/elcaine/FindIt)
-### [Link to deployed app NEED TO CHANGE](https://www.heroku.com/)
+### [Link to GitHub repo](https://github.com/elcaine/FindIt)
+### [Link to deployed Heroku app](https://find-it-p2-c5abd3d95f03.herokuapp.com/)
 
 ### Acknowledged sources
 - Starting point taken from previous assignments.
