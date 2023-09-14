@@ -27,7 +27,7 @@ router.get('/categories', async (req, res) => {
 // Login page
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/profile'); // TODO:  Not sure if this route is setup yet
+    res.redirect('/');
     return;
   }
 

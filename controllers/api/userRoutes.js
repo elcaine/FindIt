@@ -1,6 +1,5 @@
 const router = require('express').Router();
-console.log('inside userRoutes');
-const { User } = require('../../models/User');
+const { User } = require('../../models');
 
 // Create user
 router.post('/', async (req, res) => {
@@ -22,7 +21,7 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
-
+    
     if (!userData) {
       res
         .status(400)
