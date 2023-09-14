@@ -46,5 +46,9 @@ router.get('/createaccount', (req, res) => {
   res.render('create-account');
 })
 
+router.get('/my-profile', (req, res) => {
+  res.render('profile');
+})
+
 
 module.exports = router;
