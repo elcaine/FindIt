@@ -1,6 +1,19 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// Get all users:  just for development, should be deleted before submission
+router.get('/', async (req, res) => {
+  try {
+    const userData = await User.findAll();
+    const users = userData.map((u) => u.get({ plain: true }));
+    // console.log('userD>>>\n==========================\n', users);
+    users.push({"PASSWORDS FOR SEEDED USERS": "pw"});
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Create user
 router.post('/', async (req, res) => {
   try {
