@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 const { User, Category } = require('../models');
 
 
-// GENERAL GROUPING OF TESTS 1
+// GENERAL GROUPING OF TESTS 1..................... TODO:  maybe test http/controller file stuff here?
 describe('Array', function () {
     // Specific test 1.1
     describe('#indexOf()', function () {
@@ -16,7 +16,7 @@ describe('Array', function () {
 });
 
 
-// GENERAL GROUPING OF TESTS 2
+// GENERAL GROUPING OF TESTS 2.................... TODO:  This is kind of working out to be a DB testing suite
 describe('MySQL models', function() {
     // Specific test 2.1
     describe('????', function(){
@@ -26,23 +26,43 @@ describe('MySQL models', function() {
     });
     
     // Specific test 2.2
-    describe('Should return user type when creating User', function () {
-        it('should be a user', async function () {
-            const startDB = async () => {
-                sequelize.sync().then( async ()=>{
-                    // NOTE:  This test is problematic because it will fail on duplicate email
+    describe('Should return user type when creating User', async function () {
+            it('should be a user?????????', async function () {
+                let x = '';
+                await sequelize.sync({ force: false }).then( async ()=>{
+                    // Capture all registered email addresses
+                    const userData = await User.findAll();
+                    currentEmails = userData.map(m => m.email);
+                    
+                    // Ensure that the test-case email is not present in the DB already
+                    let i = 0;
+                    let e;
+                    do {
+                        e = `test${i}@email.com`;
+                        if(currentEmails.includes(e)){ i++;}
+                        else { break;}
+                    } while(true);
+                    
+                    // Create test User
                     const testUser = await User.create({
                         name: 'test name',
-                        email: 'test-email@test9.com',
+                        email: e,
                         password: 'password1',
                     });
-                    return testUser;
+                    
+                    // Capture prototype class name
+                    x = testUser.constructor.name;
+                    
+                    // Delete test user from DB
+                    await User.destroy({
+                        where: {
+                            id: testUser.id,
+                        },
+                    });
+                    return;
                 });
-            };
-            startDB().then((testUser)=>{
-                assert.equal(testUser.constructor.name, 'user');
-            });            
-        });
+                assert.equal(x, 'user');        
+            });           
     });
 
 //... end of Grouping 2
