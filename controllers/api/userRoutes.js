@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const {  User, Category, State, Company } = require('../../models');
 
 // Get all users:  just for development, should be deleted before submission
 router.get('/', async (req, res) => {

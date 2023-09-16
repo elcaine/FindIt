@@ -8,25 +8,28 @@
   <div class="col-md-5 m-2">
     <h3 class="display-6">Start A New Search</h3>
     <br>
-    <form>
+    <form id="new-search">
 
       <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">Services</label>
         <select class="form-select" id="inputGroupSelect01">
           <option selected>Choose...</option>
-          <option value="1">Plumbing</option>
-          <option value="2">HVAC</option>
-          <option value="3">Electrical</option>
-          <option value="4">Landscaping</option>
+          {{#each categories as |cat|}}
+            <option value="{{cat}}"> {{cat}}</option>
+          {{/each}}
         </select>
       </div>
 
-      <div class="form-group">
-        <label for="state">State</label>
-        <br>
-        <input type="text" class="form-control" id="state" placeholder="Enter state">
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupSelectState">State</label>
+        <select class="form-select" id="inputGroupSelectState">
+          <option selected>Choose...</option>
+          {{#each states as |s|}}
+            <option value="{{s}}"> {{s}}</option>
+          {{/each}}
+        </select>
       </div>
-      <br>
 
       <div class="form-group">
         <label for="city">City</label>
@@ -44,6 +47,4 @@
     <div id="previous-seraches"></div>
   </div>
 
-
-  {{!--
-  <script src="./js/profile.js"></script> --}}
+  <script src="./js/profile.js"></script>

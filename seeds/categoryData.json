@@ -19,5 +19,17 @@
   },
   {
     "name": "Food"
+  },
+  {
+    "name": "Plumbing"
+  },
+  {
+    "name": "HVAC"
+  },
+  {
+    "name": "Electrical"
+  },
+  {
+    "name": "Landscaping"
   }
 ]
