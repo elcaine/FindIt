@@ -1,23 +1,23 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
-
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
-
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
+  const cat = $('#inputGroupSelect01').val();
+  const sta = $('#inputGroupSelectState').val();
+  
+  const noSelection = 'Choose...';
+  if(cat === noSelection || sta === noSelection){
+    console.log('Must select category and state');
+  } else {
+    const response = await fetch('/search', {
       method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      body: JSON.stringify({ cat, sta }),
+          headers: { 'Content-Type': 'application/json'},
     });
-
-    if (response.ok) {
-      document.location.replace('/');
+    
+    if(response.ok){
+      // This is ugly, but couldn't get it to work a more gooder way in the time alloted
+      document.location.replace(`/search2`);
     } else {
-      alert('Failed to create project');
+      alert('Failed at sending state/category for fetch');
     }
   }
 };
@@ -31,17 +31,20 @@ const delButtonHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      // document.location.replace('/');
     } else {
       alert('Failed to delete project');
     }
   }
 };
 
-document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
+// document
+//   .querySelector('.new-project-form')
+//   .addEventListener('submit', newFormHandler);
 
-document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+// document
+//   .querySelector('.project-list')
+//   .addEventListener('click', delButtonHandler);
+
+  
+$('#new-search').on('submit', newFormHandler);
