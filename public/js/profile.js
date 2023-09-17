@@ -7,40 +7,19 @@ const newFormHandler = async (event) => {
   if(cat === noSelection || sta === noSelection){
     console.log('Must select category and state');
   } else {
-    const response = await fetch('/api/search', {
+    const response = await fetch('/search', {
       method: 'POST',
       body: JSON.stringify({ cat, sta }),
           headers: { 'Content-Type': 'application/json'},
     });
-    console.log('response..................... ', response);
+    
     if(response.ok){
-      document.location.replace('/search');
+      // This is ugly, but couldn't get it to work a more gooder way in the time alloted
+      document.location.replace(`/search2`);
     } else {
       alert('Failed at sending state/category for fetch');
     }
   }
-
-
-
-  // const name = document.querySelector('#project-name').value.trim();
-  // const needed_funding = document.querySelector('#project-funding').value.trim();
-  // const description = document.querySelector('#project-desc').value.trim();
-
-  // if (name && needed_funding && description) {
-  //   const response = await fetch(`/api/projects`, {
-  //     method: 'POST',
-  //     body: JSON.stringify({ name, needed_funding, description }),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-
-  //   if (response.ok) {
-  //     document.location.replace('/');
-  //   } else {
-  //     alert('Failed to create project');
-  //   }
-  // }
 };
 
 const delButtonHandler = async (event) => {
@@ -68,5 +47,4 @@ const delButtonHandler = async (event) => {
 //   .addEventListener('click', delButtonHandler);
 
   
-
-  $('#new-search').on('submit', newFormHandler);
+$('#new-search').on('submit', newFormHandler);
