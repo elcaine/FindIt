@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {  User, Category, State, Company } = require('../../models');
+const {  User, Category, State, Company, Inquiry } = require('../../models');
 
 // Get all users:  just for development, should be deleted before submission
 router.get('/', async (req, res) => {
@@ -25,6 +25,18 @@ router.post('/', async (req, res) => {
 
       res.status(200).json(userData);
     });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// Create contact inquiry
+router.post('/inq', async (req, res) => {
+  try {
+    const userData = await Inquiry.create(req.body);
+    if(userData){
+      res.status(200).json(userData);
+    }
   } catch (err) {
     res.status(400).json(err);
   }

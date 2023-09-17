@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {  User, Category, State, Company } = require('../models');
+const {  User, Category, State, Company, Inquiry } = require('../models');
 const withAuth = require('../utils/auth');
 let resultRay = [];
 
@@ -13,6 +13,20 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+// Show inquiries
+router.get('/inq', async (req, res) => {
+  const inquiryData = await Inquiry.findAll();
+  if(!inquiryData){
+    res.status(404).json({"message": "No contact/inquiries found"});
+  }
+
+  const inqs = inquiryData.map(i => i.get({ plain: true }));
+  console.log('inqs after cleaning>>>\n', inqs);
+  res.render('inquiry', {
+    result: inqs
+  });
 });
 
 // Login page
