@@ -34,20 +34,29 @@ const newFormHandler = async (event) => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const previousSearch = localStorage.getItem('search');
+  fetch('/seeds/userData.json')
+    .then((response) => response.json())
+    .then((userData) => {
+     
+      const userNameElement = document.getElementById('user-name');
+      userNameElement.textContent = userData.name;
 
-  if(previousSearch) {
-    const searched = JSON.parse(previousSearch);
-
-    const searchList = document.getElementById('previous-searches');
-
-    searchList.innerHTML = `
-    <div>
-      <p>${searched.cat} ${searched.sta} ${searched.city}</p>
-    </div>
-    `;
-  }
+      const previousSearch = localStorage.getItem('search');
+      if (previousSearch) {
+        const searched = JSON.parse(previousSearch);
+        const searchList = document.getElementById('previous-searches');
+        searchList.innerHTML = `
+          <div>
+            <p>${searched.cat} ${searched.sta} ${searched.city}</p>
+          </div>
+        `;
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching user data:', error);
+    });
 });
+
 
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
