@@ -1,20 +1,10 @@
 const User = require('./User');
 const Category = require('./Category');
 const State = require('./State');
-const City = require('./City');
+const Search = require('./Search');
 const Company = require('./Company');
 const Inquiry = require('./Inquiry');
 
-State.hasMany(City, {
-    foreignKey: 'state_id',
-    onDelete: 'CASCADE'
-});
-
-City.belongsTo(State, {
-    foreignKey: 'state_id'
-});
-
-// _________________________________________________________________
 State.hasMany(Company, {
     foreignKey: 'state_id',
     onDelete: 'CASCADE'
@@ -34,4 +24,33 @@ Company.belongsTo(Category, {
     foreignKey: 'category_id'
 });
 
-module.exports = { User, Category, State, City, Company, Inquiry };
+
+// _________________________________________________________________
+User.hasMany(Search, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+Search.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+State.hasMany(Search, {
+    foreignKey: 'state_id',
+    onDelete: 'CASCADE'
+});
+
+Search.belongsTo(State, {
+    foreignKey: 'state_id'
+});
+
+Category.hasMany(Search, {
+    foreignKey: 'category_id',
+    onDelete: 'CASCADE'
+});
+
+Search.belongsTo(Category, {
+    foreignKey: 'category_id'
+});
+
+module.exports = { User, Category, State, Search, Company, Inquiry };

@@ -14,7 +14,7 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
-      document.location.replace('/');
+      document.location.replace('/my-profile');
     } else {
       alert(response.statusText);
     }
@@ -27,7 +27,7 @@ const signupFormHandler = async (event) => {
   const name = $('#name2').val();
   const email = $('#email').val();
   const password = $('#password2').val();
-  const phone = $('#phone-number').val();
+  // const phone = $('#phone-number').val();
   
   if (email && password) {
     const response = await fetch('/api/users', {
