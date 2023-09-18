@@ -26,7 +26,8 @@ router.get('/inq', async (req, res) => {
   const inqs = inquiryData.map(i => i.get({ plain: true }));
   console.log('inqs after cleaning>>>\n', inqs);
   res.render('inquiry', {
-    result: inqs
+    result: inqs,
+    logged_in: req.session.logged_in 
   });
 });
 
@@ -43,7 +44,8 @@ router.get('/login', (req, res) => {
 // Tried doing rendering 'results' from the direct post, but it would keep redirecting to 'my-profile'
 router.get('/search2', (req, res) => {
   res.render('results', {
-    result: resultRay
+    result: resultRay,
+    logged_in: req.session.logged_in 
   });
 });
 
@@ -80,11 +82,15 @@ router.post('/search', async (req, res) => {
 });
 
 router.get('/contact', (req, res) => {
-  res.render('contact');
+  res.render('contact', {
+    logged_in: req.session.logged_in
+  });
 });
 
 router.get('/aboutus', (req, res) => {
-  res.render('about-us');
+  res.render('about-us', {
+    logged_in: req.session.logged_in
+  });
 });
 
 router.get('/createaccount', (req, res) => {
@@ -124,7 +130,8 @@ router.get('/my-profile', async (req, res) => {
       categories: cats,
       states: states,
       // Previous search stuff
-      previous: previous
+      previous: previous,
+      logged_in: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
