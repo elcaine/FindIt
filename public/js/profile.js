@@ -33,54 +33,5 @@ const newFormHandler = async (event) => {
   }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('/seeds/userData.json')
-    .then((response) => response.json())
-    .then((userData) => {
-     
-      const userNameElement = document.getElementById('user-name');
-      userNameElement.textContent = userData.name;
-
-      const previousSearch = localStorage.getItem('search');
-      if (previousSearch) {
-        const searched = JSON.parse(previousSearch);
-        const searchList = document.getElementById('previous-searches');
-        searchList.innerHTML = `
-          <div>
-            <p>${searched.cat} ${searched.sta} ${searched.city}</p>
-          </div>
-        `;
-      }
-    })
-    .catch((error) => {
-      console.error('Error fetching user data:', error);
-    });
-});
-
-
-const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
-
-    const response = await fetch(`/api/projects/${id}`, {
-      method: 'DELETE',
-    });
-
-    if (response.ok) {
-      // document.location.replace('/');
-    } else {
-      alert('Failed to delete project');
-    }
-  }
-};
-
-// document
-//   .querySelector('.new-project-form')
-//   .addEventListener('submit', newFormHandler);
-
-// document
-//   .querySelector('.project-list')
-//   .addEventListener('click', delButtonHandler);
-
   
 $('#new-search').on('submit', newFormHandler);

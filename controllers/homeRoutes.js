@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {  User, Category, State, Company, Inquiry } = require('../models');
+const {  User, Category, State, Company, Inquiry, Search } = require('../models');
 const withAuth = require('../utils/auth');
 const fs = require('fs');
 let resultRay = [];
@@ -47,8 +47,7 @@ router.get('/search2', (req, res) => {
   });
 });
 
-// THE ACTUAL SEARCH (API)...  wanted to move this to API directory, but the ugliness depends on resultRay[]
-//...........................  being assesible to here and the res.render() call above.
+// THE ACTUAL SEARCH (API)
 router.post('/search', async (req, res) => {
   try{
     const cat = await Category.findOne({ where: { name: req.body.cat }});
@@ -57,8 +56,6 @@ router.post('/search', async (req, res) => {
     if(!cat || !sta){
       res.status(404).json({"message": "No category and/or state found"});
     }
-    
-    // console.log('THE ACTUAL (API) SEARCH\ncat: ', cat.id, '\tsta: ', sta.id);
 
     const resultsData = await Company.findAll({
       where: { 
@@ -68,6 +65,14 @@ router.post('/search', async (req, res) => {
     });
 
     resultRay = resultsData.map(r => r.name);
+    
+    await Search.create({
+      user_id: 1,
+      category_id: cat.id,
+      state_id: sta.id,
+      // result: j,
+    });
+
     res.status(200).json(resultRay);
   } catch (err) {
     res.status(500).json(err);
@@ -88,25 +93,38 @@ router.get('/createaccount', (req, res) => {
 
 router.get('/my-profile', async (req, res) => {
   try {
-    fs.readFile('./seeds/userData.json', 'utf8', async (err, data) => {
-      if (err) {
-        console.error('Error: ', err);
-        res.status(500).json(err);
-        return;
-      }
-      const userData = JSON.parse(data);
+    // Drop-down lists data
+    const categoryData = await Category.findAll();
+    const statesData = await State.findAll();
+    // ...  drop-down lists data cleanup
+    const cats = categoryData.map((cat) => cat.name);
+    const states = statesData.map((s) => s.name);
 
-      const categoryData = await Category.findAll();
-      const statesData = await State.findAll();
-
-      const cats = categoryData.map((cat) => cat.name);
-      const states = statesData.map((s) => s.name);
-
-      res.render('profile', {
-        userData: userData, 
-        categories: cats,
-        states: states,
-      });
+    // Previous searches
+    const previousData = await Search.findAll({
+      include: [
+        {
+          model: State,
+          attributes: ['name'],
+        },
+        {
+          model: Category,
+          attributes: ['name'],
+        }
+    ],
+    });
+    const previous = previousData.map(p => p.get({ plain: true }));
+    const userId = req.session.user_id;
+    const user = await User.findOne({ where: { id: userId }});
+    
+    res.render('profile', {
+      // userData: userData, 
+      name: user.name,
+      // Drop-down selections
+      categories: cats,
+      states: states,
+      // Previous search stuff
+      previous: previous
     });
   } catch (err) {
     res.status(500).json(err);

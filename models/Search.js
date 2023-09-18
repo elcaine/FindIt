@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class City extends Model {}
+class Search extends Model {}
 
-City.init(
+Search.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,9 +11,12 @@ City.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id',
+            },
         },
         state_id: {
             type: DataTypes.INTEGER,
@@ -22,15 +25,25 @@ City.init(
                 key: 'id',
             },
         },
-        
+        category_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'category',
+                key: 'id',
+            },
+        }
+        // ,
+        // results: {
+        //     type: DataTypes.JSON,
+        // }
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'city',
+        modelName: 'search',
     }
 );
 
-module.exports = City;
+module.exports = Search;

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-auto">
-    <h2 class="display-4">Welcome Back, <span id="user-name"></span>!</h2>
+    <h2 class="display-4">Welcome Back, {{name}}!</h2>
   </div>
 </div>
 
@@ -43,8 +43,13 @@
   </div>
   
   <div class="col-md-5">
-    <h4 class="display-6">View Your Previous Searches</h4>
-    <div id="previous-searches"></div>
+    <h4 class="display-6">Previous Searches</h4>
+    {{!-- <div id="previous-searches"></div> --}}
+    <div class="row">
+          {{#each previous as |s|}}
+            <div class="col"><h3>State: {{s.state.name}}, Category: {{s.category.name}}</h3></div>
+          {{/each}}
+    </div>
   </div>
 
   {{!-- <script src="./js/profile.js"></script> --}}
