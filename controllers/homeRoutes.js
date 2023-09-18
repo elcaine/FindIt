@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {  User, Category, State, Company, Inquiry } = require('../models');
 const withAuth = require('../utils/auth');
+const fs = require('fs');
 let resultRay = [];
 
 // Root route:  homepage
@@ -86,16 +87,26 @@ router.get('/createaccount', (req, res) => {
 });
 
 router.get('/my-profile', async (req, res) => {
-  try{
-    const categoryData = await Category.findAll();
-    const statesData = await State.findAll();
+  try {
+    fs.readFile('./seeds/userData.json', 'utf8', async (err, data) => {
+      if (err) {
+        console.error('Error: ', err);
+        res.status(500).json(err);
+        return;
+      }
+      const userData = JSON.parse(data);
 
-    const cats = categoryData.map(cat => cat.name);
-    const states = statesData.map(s => s.name);
-    
-    res.render('profile', {
-      categories: cats,
-      states: states
+      const categoryData = await Category.findAll();
+      const statesData = await State.findAll();
+
+      const cats = categoryData.map((cat) => cat.name);
+      const states = statesData.map((s) => s.name);
+
+      res.render('profile', {
+        userData: userData, 
+        categories: cats,
+        states: states,
+      });
     });
   } catch (err) {
     res.status(500).json(err);

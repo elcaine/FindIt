@@ -15,7 +15,13 @@ const newContactFormHandler = async (event) => {
           },
         });
 
+        // Delete previous contact forms berore display
         if (response.ok) {
+          const contactForm = document.getElementById('contact-form');
+          if (contactForm) {
+            contactForm.remove();
+          }
+
           document.location.replace('/inq');
         } else {
           alert('Failed to create inquiry');

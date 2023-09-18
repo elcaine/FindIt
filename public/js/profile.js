@@ -7,10 +7,21 @@ const newFormHandler = async (event) => {
   if(cat === noSelection || sta === noSelection){
     console.log('Must select category and state');
   } else {
+
+    const search = {
+      cat: cat,
+      sta: sta,
+      city: city
+    };
+
+    const searchJSON = JSON.stringify(search);
+
+    localStorage.setItem('search', searchJSON);
+
     const response = await fetch('/search', {
       method: 'POST',
       body: JSON.stringify({ cat, sta }),
-          headers: { 'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json'},
     });
     
     if(response.ok){
@@ -21,6 +32,31 @@ const newFormHandler = async (event) => {
     }
   }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/seeds/userData.json')
+    .then((response) => response.json())
+    .then((userData) => {
+     
+      const userNameElement = document.getElementById('user-name');
+      userNameElement.textContent = userData.name;
+
+      const previousSearch = localStorage.getItem('search');
+      if (previousSearch) {
+        const searched = JSON.parse(previousSearch);
+        const searchList = document.getElementById('previous-searches');
+        searchList.innerHTML = `
+          <div>
+            <p>${searched.cat} ${searched.sta} ${searched.city}</p>
+          </div>
+        `;
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching user data:', error);
+    });
+});
+
 
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {

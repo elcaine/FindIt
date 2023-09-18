@@ -1,6 +1,14 @@
 .nav-bar {
     padding: 1%;
-    background-color: #628ad9;
+    background-color: #2e4c89;
+}
+
+.nav-bar .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.nav-bar .navbar-brand {
+    color: white !important;
 }
 
 .hero-img {
@@ -8,7 +16,19 @@
     justify-content: center;
     align-items: center;
     height: 60vh;
-  }
+}
+
+.contact-submit {
+    background-color: #2e4c89;
+}
+
+.create-account-btn {
+    color: white;
+}
+
+.profile-submit {
+    background-color: #2e4c89;
+}
 
 .registration-form{
 	padding: 50px 0;
@@ -26,7 +46,7 @@
 
 .registration-form .form-icon{
 	text-align: center;
-    background-color: #5891ff;
+    background-color: #2e4c89;
     border-radius: 50%;
     font-size: 40px;
     color: white;
@@ -48,7 +68,7 @@
     padding: 10px 20px;
     font-size: 18px;
     font-weight: bold;
-    background-color: #5791ff;
+    background-color: #2e4c89;
     border: none;
     color: white;
     margin-top: 20px;
@@ -75,7 +95,7 @@
 .registration-form .social-icons a{
     font-size: 23px;
     margin: 0 3px;
-    color: #5691ff;
+    color: #2e4c89;
     border: 1px solid;
     border-radius: 50%;
     width: 45px;
