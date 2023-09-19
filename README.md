@@ -13,7 +13,7 @@ A site designed to help customers find nearby companies to help with home servic
 Our Project is designed to be used by customers looking for home service professionals to connect with for 
 services that they need. 
 
-### Screenshots of logos 
+### Screenshots of FindIt application 
 ![Screenshoty shots](./img/404.jpg)
 ![Screenshot  shots](./img/contactus.png)
 ![Screenshot  shots](./img/searchscreen.png)
