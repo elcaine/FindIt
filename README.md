@@ -9,6 +9,9 @@
 ## Description
 A site designed to help customers find nearby companies to help with home services they need. 
 
+## New Technology Used
+Mocha
+
 ## Usage
 Our Project is designed to be used by customers looking for home service professionals to connect with for 
 services that they need. 
