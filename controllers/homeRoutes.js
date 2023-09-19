@@ -24,7 +24,7 @@ router.get('/inq', async (req, res) => {
   }
 
   const inqs = inquiryData.map(i => i.get({ plain: true }));
-  console.log('inqs after cleaning>>>\n', inqs);
+  
   res.render('inquiry', {
     result: inqs,
     logged_in: req.session.logged_in 
@@ -69,7 +69,7 @@ router.post('/search', async (req, res) => {
     resultRay = resultsData.map(r => r.name);
     
     await Search.create({
-      user_id: 1,
+      user_id: req.session.user_id,
       category_id: cat.id,
       state_id: sta.id,
       // result: j,
@@ -106,8 +106,11 @@ router.get('/my-profile', async (req, res) => {
     const cats = categoryData.map((cat) => cat.name);
     const states = statesData.map((s) => s.name);
 
+    const userId = req.session.user_id;
+
     // Previous searches
     const previousData = await Search.findAll({
+      where: { user_id: userId },
       include: [
         {
           model: State,
@@ -120,7 +123,6 @@ router.get('/my-profile', async (req, res) => {
     ],
     });
     const previous = previousData.map(p => p.get({ plain: true }));
-    const userId = req.session.user_id;
     const user = await User.findOne({ where: { id: userId }});
     
     res.render('profile', {

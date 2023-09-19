@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
   try {
     const userData = await User.findAll();
     const users = userData.map((u) => u.get({ plain: true }));
-    // console.log('userD>>>\n==========================\n', users);
+    
     users.push({"PASSWORDS FOR SEEDED USERS": "pw"});
     res.status(200).json(users);
   } catch (err) {
