@@ -17,7 +17,7 @@ Our Project is designed to be used by customers looking for home service profess
 services that they need. 
 
 ### Screenshots of FindIt application 
-![Screenshoty shots](./img/404.jpg)
+![Screenshoty shots](./img/homepage.png)
 ![Screenshot  shots](./img/contactus.png)
 ![Screenshot  shots](./img/searchscreen.png)
 ## Links
