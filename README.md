@@ -14,7 +14,7 @@ Our Project is designed to be used by customers looking for home service profess
 services that they need. 
 
 ### Screenshots of logos 
-![Screenshoty shots](./img/404.jpg)
+![Screenshoty shots](./img/frontpage.png)
 ![Screenshot  shots](./public/Images/contactus.png)
 ![Screenshot  shots](./public/Images/searchscreen.png)
 ## Links
